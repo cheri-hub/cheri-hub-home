@@ -27,9 +27,12 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy services.json (can be overridden with volume mount)
 COPY public/services.json /usr/share/nginx/html/services.json
 
+# Install curl for healthcheck
+RUN apk add --no-cache curl
+
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:80/health || exit 1
+  CMD curl -f http://localhost:80/health || exit 1
 
 # Expose port
 EXPOSE 80

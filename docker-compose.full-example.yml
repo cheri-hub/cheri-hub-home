@@ -1,0 +1,105 @@
+# ============================================
+# Docker Compose Completo para VPS
+# Inclui HOME + SICAR (exemplo de integração)
+# ============================================
+# Este arquivo é um EXEMPLO de como integrar
+# o HOME com os serviços existentes na VPS
+# ============================================
+
+version: '3.8'
+
+services:
+  # ============================================
+  # Cherihub HOME - Portal Central
+  # ============================================
+  cherihub-home:
+    build:
+      context: ./cherihub-home
+      dockerfile: Dockerfile
+    container_name: cherihub-home
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+    volumes:
+      - ./cherihub-home/public/services.json:/usr/share/nginx/html/services.json:ro
+    networks:
+      - cherihub-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+  # ============================================
+  # SICAR API Backend
+  # ============================================
+  sicar-api:
+    build:
+      context: ./sicar/app
+      dockerfile: Dockerfile
+    container_name: sicar-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@postgres:5432/sicar
+      - ENVIRONMENT=production
+    volumes:
+      - ./sicar/downloads:/app/downloads
+      - ./sicar/logs:/app/logs
+    networks:
+      - cherihub-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ============================================
+  # SICAR Frontend
+  # ============================================
+  sicar-frontend:
+    build:
+      context: ./sicar/frontend
+      dockerfile: Dockerfile
+    container_name: sicar-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    networks:
+      - cherihub-network
+    depends_on:
+      - sicar-api
+
+  # ============================================
+  # PostgreSQL Database
+  # ============================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: cherihub-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=sicar
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - cherihub-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d sicar"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  cherihub-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

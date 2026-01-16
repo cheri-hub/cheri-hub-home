@@ -59,12 +59,15 @@ jobs:
             docker stop ${{ env.CONTAINER_NAME }} 2>/dev/null || true
             docker rm ${{ env.CONTAINER_NAME }} 2>/dev/null || true
             
+            # Create network if not exists
+            docker network create cherihub-network 2>/dev/null || true
+            
             # Run new container
             docker run -d \
               --name ${{ env.CONTAINER_NAME }} \
               --restart unless-stopped \
               -p 3001:80 \
-              --network sicar_default \
+              --network cherihub-network \
               ${{ env.DOCKER_IMAGE }}:latest
             
             # Cleanup

@@ -11,9 +11,9 @@
       "description": "API para consulta de dados do Sistema Nacional de Cadastro Ambiental Rural (CAR). Permite busca e download de informações georreferenciadas.",
       "icon": "🌿",
       "frontend_url": "https://sicar.cherihub.cloud",
-      "api_url": "https://sicar.cherihub.cloud/docs",
-      "docs_url": "https://sicar.cherihub.cloud/docs",
-      "health_endpoint": "https://sicar.cherihub.cloud/health",
+      "api_url": "https://sicar.cherihub.cloud/api",
+      "docs_url": "https://sicar.cherihub.cloud/api/docs",
+      "health_endpoint": "https://sicar.cherihub.cloud/api/health",
       "status": "active",
       "version": "1.0.0",
       "tags": ["Ambiental", "Georreferenciamento", "CAR"]

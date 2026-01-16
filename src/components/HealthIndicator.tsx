@@ -38,7 +38,7 @@ export function HealthIndicator({ status, responseTime, showLabel = true }: Heal
     },
   };
 
-  const { color, ring, text, label, animate } = config[status];
+  const { color, text, label, animate } = config[status];
 
   return (
     <div className="flex items-center gap-2">

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Header, Footer, ServiceCard } from '@/components';
 import { useTheme, useHealthCheck } from '@/hooks';
 import { loadServicesConfig } from '@/services';
-import { Service, ServicesConfig } from '@/types';
+import { ServicesConfig } from '@/types';
 
 function App() {
   const { theme, toggleTheme } = useTheme();

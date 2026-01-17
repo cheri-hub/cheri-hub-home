@@ -18,6 +18,19 @@
       "version": "1.0.0",
       "tags": ["Ambiental", "Georreferenciamento", "CAR"]
     },
+	{
+      "id": "govauth",
+      "name": "Gov.br Auth API",
+      "description": "API de autenticação Gov.br e integração com SIGEF/INCRA. Permite download de arquivos certificados, memoriais descritivos e consultas WFS.",
+      "icon": "🔐",
+      "frontend_url": "https://govauth.cherihub.cloud",
+      "api_url": "https://govauth.cherihub.cloud/api",
+      "docs_url": "https://govauth.cherihub.cloud/api/docs",
+      "health_endpoint": "https://govauth.cherihub.cloud/api/health",
+      "status": "active",
+      "version": "1.0.0",
+      "tags": ["Autenticação", "Gov.br", "SIGEF", "INCRA"]
+    },
     {
       "id": "analytics",
       "name": "Analytics API",
@@ -30,19 +43,6 @@
       "status": "coming_soon",
       "version": null,
       "tags": ["Analytics", "Métricas"]
-    },
-    {
-      "id": "geo",
-      "name": "Geo Services",
-      "description": "Serviços de processamento geoespacial, conversão de coordenadas e análise de dados territoriais.",
-      "icon": "🗺️",
-      "frontend_url": null,
-      "api_url": null,
-      "docs_url": null,
-      "health_endpoint": null,
-      "status": "coming_soon",
-      "version": null,
-      "tags": ["GIS", "Mapas", "Coordenadas"]
     }
   ]
 }

@@ -6,30 +6,17 @@
   },
   "services": [
     {
-      "id": "sicar",
-      "name": "SICAR API",
-      "description": "API para consulta de dados do Sistema Nacional de Cadastro Ambiental Rural (CAR). Permite busca e download de informações georreferenciadas.",
-      "icon": "🌿",
-      "frontend_url": "https://sicar.cherihub.cloud",
-      "api_url": "https://sicar.cherihub.cloud/api",
-      "docs_url": "https://sicar.cherihub.cloud/api/docs",
-      "health_endpoint": "https://sicar.cherihub.cloud/api/health",
+      "id": "datageoplan",
+      "name": "DataGeoPlan API",
+      "description": "API multi-plataforma para dados geoespaciais brasileiros. Integra SIGEF/INCRA e SICAR com autenticação Gov.br, download de shapefiles, processamento GIS, consulta de parcelas por BBox e geração de SLD/PDF.",
+      "icon": "🗺️",
+      "frontend_url": "https://datageoplan-python-api.cherihub.cloud/",
+      "api_url": "https://datageoplan-python-api.cherihub.cloud/api",
+      "docs_url": "https://datageoplan-python-api.cherihub.cloud/docs",
+      "health_endpoint": "https://datageoplan-python-api.cherihub.cloud/health",
       "status": "active",
       "version": "1.0.0",
-      "tags": ["Ambiental", "Georreferenciamento", "CAR"]
-    },
-	{
-      "id": "govauth",
-      "name": "Gov.br Auth API",
-      "description": "API de autenticação Gov.br e integração com SIGEF/INCRA. Permite download de arquivos certificados, memoriais descritivos e consultas WFS.",
-      "icon": "🔐",
-      "frontend_url": "https://govauth.cherihub.cloud",
-      "api_url": "https://govauth.cherihub.cloud/api",
-      "docs_url": "https://govauth.cherihub.cloud/api/docs",
-      "health_endpoint": "https://govauth.cherihub.cloud/api/health",
-      "status": "active",
-      "version": "1.0.0",
-      "tags": ["Autenticação", "Gov.br", "SIGEF", "INCRA"]
+      "tags": ["Geoespacial", "SIGEF", "SICAR", "CAR", "Gov.br", "GIS", "Shapefiles"]
     },
     {
       "id": "analytics",
